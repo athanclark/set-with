@@ -1,17 +1,29 @@
 {-# LANGUAGE
     GeneralizedNewtypeDeriving
+  , NoImplicitPrelude
   #-}
 
 module Data.SetWith where
 
+import Prelude (Show, String, Eq, Ord, Bool, Int, Maybe, fmap, not, fst, snd, zip, (.), ($))
 import qualified Data.Map as Map
 import qualified Data.List as List
 import Data.Maybe (isJust)
+import qualified Data.Foldable as Fold
 import Data.Functor.Invariant
+import Control.Applicative ((<$>))
+import Data.Monoid (Monoid)
 
 
 newtype SetWith k a = SetWith {unSetWith :: (a -> k, Map.Map k a)}
   deriving (Monoid)
+
+instance Invariant (SetWith k) where
+  invmap = map
+
+instance Fold.Foldable (SetWith k) where
+  foldr = Data.SetWith.foldr
+
 
 -- * Operators
 

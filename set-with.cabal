@@ -8,6 +8,7 @@ Synopsis:               Set of elements sorted by a different data type.
 -- Description:
 Cabal-Version:          >= 1.10
 Build-Type:             Simple
+Category:               Data
 
 Library
   Default-Language:     Haskell2010
